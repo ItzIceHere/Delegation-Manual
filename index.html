@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delegation Team - Operational Manual and Code of Conduct</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;600&family=IBM+Plex+Mono&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* --- Root Variables and Base --- */
+        :root {
+            --bg-light-primary: #f8f9fa;
+            --bg-light-secondary: #ffffff;
+            --text-dark-primary: #212529;
+            --text-dark-secondary: #6c757d;
+            --red-brand: #D43D39;
+            --red-heading: #A92C28;
+            --red-accent-bg: rgba(212, 61, 57, 0.07);
+            --border-color-light: #e9ecef;
+        }
+
+        [data-theme='dark'] {
+            --bg-light-primary: #1a1a1a;
+            --bg-light-secondary: #2a2a2a;
+            --text-dark-primary: #f8f9fa;
+            --text-dark-secondary: #a0a0a0;
+            --red-brand: #ff4d4d;
+            --red-heading: #ff6b6b;
+            --red-accent-bg: rgba(255, 77, 77, 0.1);
+            --border-color-light: #444;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light-primary);
+            color: var(--text-dark-primary);
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .document-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--bg-light-secondary);
+            border: 1px solid var(--border-color-light);
+            border-radius: 8px;
+            padding: 40px 60px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        #theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--bg-light-secondary);
+            color: var(--text-dark-primary);
+            border: 1px solid var(--border-color-light);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        #theme-switcher:hover {
+            background-color: var(--red-accent-bg);
+        }
+
+        /* --- Typography and Headings --- */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            text-align: center;
+            letter-spacing: 1px;
+            color: var(--text-dark-primary);
+            margin-bottom: 10px;
+        }
+
+        h2#red-lotus-unity {
+            font-size: 1.6em;
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-dark-secondary);
+            margin-top: 0;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: var(--red-heading);
+            margin-top: 60px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color-light);
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: var(--text-dark-primary);
+            margin-top: 40px;
+        }
+
+        h4 {
+            font-size: 1.1em;
+            color: var(--text-dark-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        hr {
+            border: 0;
+            height: 2px;
+            background-image: linear-gradient(to right, rgba(169, 44, 40, 0), rgba(169, 44, 40, 0.5), rgba(169, 44, 40, 0));
+            margin: 70px 0;
+        }
+
+        /* --- Text Elements & Accents --- */
+        p {
+            margin-bottom: 1.25em;
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--text-dark-primary);
+        }
+
+        .red-lotus-text {
+            color: var(--red-brand);
+            font-weight: 700;
+        }
+
+        .warning-text {
+            color: #D32F2F;
+            /* A strong, clear red for alerts */
+            font-weight: 600;
+        }
+
+        code {
+            font-family: 'IBM Plex Mono', monospace;
+            background-color: #f1f3f5;
+            color: #b71c1c;
+            padding: 3px 7px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        /* --- Custom List Styling --- */
+        ul,
+        ol {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        ul>li::before {
+            content: '■';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            color: var(--red-heading);
+            font-size: 0.8em;
+        }
+
+        ol>li {
+            counter-increment: list-counter;
+        }
+
+        ol>li::before {
+            content: counter(list-counter) ".";
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            color: var(--red-heading);
+        }
+
+        /* --- Blockquotes and Special Sections --- */
+        blockquote {
+            background-color: var(--red-accent-bg);
+            border-left: 4px solid var(--red-brand);
+            margin: 30px 0;
+            padding: 20px 30px;
+            font-style: italic;
+        }
+
+        .zero-tolerance-section h3::before {
+            content: '⚠️ ';
+            margin-right: 5px;
+        }
+
+        .formal-declaration {
+            border: 1px solid var(--border-color-light);
+            background-color: var(--bg-light-primary);
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .formal-declaration h3 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        /* --- Selection Style --- */
+        ::selection {
+            background-color: var(--red-brand);
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body class="stackedit">
+    <div id="theme-switcher">
+        <i class="fas fa-sun"></i>
+    </div>
+    <div class="document-container"><h1 id="delegation-team---operational-manual-and-code-of-conduct">Delegation Team - Operational Manual and Code of Conduct</h1>
+<h2 id="red-lotus-unity">Red Lotus Unity</h2>
+<hr>
+<h2 id="welcome-to-the-delegation-team">Welcome to the Delegation Team</h2>
+<h3 id="a-welcome-message-from-headquarters">A Welcome Message from Headquarters</h3>
+<p>On behalf of Headquarters and the entire Red Lotus Unity, we extend a formal welcome to the Delegation Team. If you are now reading this document sent to you by a superior, it means that you have successfully passed a selection process designed to identify individuals who possess not only strong technical skills but also the character, maturity, and integrity that align with our core principles. This is not just a recognition of your abilities, but a significant mark of our trust in you. From this point forward, you will represent a critical component of our operational structure. We are confident that you will carry out your duties with the professionalism and dedication this position requires.</p>
+<h3 id="understanding-red-lotus">Understanding Red Lotus</h3>
+<p>It is essential that you immediately understand the nature of the entity you are now a part of. Red Lotus is not just a community; it is an <strong>institution</strong>. It is a Unity built upon codified principles and strict procedures—our Charters—which serve as the procedural and ethical foundation for all our actions. Our primary purpose is to operate as an authority in the field of ScreenSharing digital security and justice within the ScreenSharing community</p>
+<h3 id="the-role-of-the-delegation">The Role of the Delegation</h3>
+<p>Your role within the Delegation Team is multifaceted and critically important. You are more than a support team; you are central to upholding our procedural justice and operational security. Your primary responsibilities, which will be detailed further in this manual, encompass three fundamental functions:</p>
+<ul>
+<li><strong>Stewards of Procedure:</strong> You are the primary enforcers of our regulations. From the proper handling of a support ticket to the moderation of public channels, your actions must set the standard for adherence to our established protocols.</li>
+<li><strong>Supervisors of Security:</strong> In accordance with the <em>Red Lotus Directive on Screenshare Security</em>, you have the duty to supervise ScreenShares to ensure they are conducted ethically, securely, and impartially. Your presence serves as a safeguard for both the user and the integrity of the process itself.</li>
+<li><strong>Adjudicative Body:</strong> As outlined in the <em>Codex of Appeals</em>, the Delegation functions as a key component of our internal appeals system. You will be required to analyze evidence, interpret regulations, and, when necessary, contribute to verdicts that have a real and lasting impact.</li>
+</ul>
+<h3 id="your-responsibility">Your Responsibility</h3>
+<p>Accepting this role is more than a status change in our Community. It is a serious commitment—a pledge of adherence not to any single person, but to the principles and procedures that define Red Lotus. Every action you take, every decision you make, and every word you type will directly reflect on the reputation and integrity of the entire Unity. Inactivity, carelessness, or a lack of professionalism are not minor lapses; they are risks to the foundation of what we are building. You have been given a significant responsibility. We trust you will honor it and prove worthy of the confidence placed in you.</p>
+<hr>
+<h2 id="the-core-principles-of-red-lotus-unity">The Core Principles of Red Lotus Unity</h2>
+<h3 id="the-fundamental-charter-of-red-lotus-unity-our-governing-document">The “Fundamental Charter of Red Lotus Unity”: Our Governing Document</h3>
+<p>Every stable organization is guided by a set of foundational rules. For us, that foundation is the <em>Charter of the Unity of Red Lotus</em>. This is not a simple list of rules; it is our governing document, defining our identity, values, and mission. All other codes, directives, and manuals—including this one—are subordinate to the Charter. In any case of conflict or ambiguity, the principles established in the Charter will always prevail. Understanding its contents is <strong>not optional</strong>; it is a fundamental requirement for operating effectively within our Unity. The principles that follow are the essence of this Charter, outlined here to guide your daily conduct.</p>
+<h3 id="the-principle-of-maturity">The Principle of Maturity</h3>
+<p>In the context of Red Lotus, <strong>Maturity</strong> is not about age, but about behavior: the ability to operate with a clear head and emotional control, especially under pressure. As a member of the Delegation, you will regularly face frustrated users, complex situations, and internal disagreements. This principle requires you to:</p>
+<ul>
+<li><strong>De-escalate Conflict:</strong> Your goal is never to “win” an argument but to resolve it. Always maintain a calm and constructive tone.</li>
+<li><strong>Communicate Clearly:</strong> Explain procedures with patience, even to those who are hostile. Confusion breeds frustration; clarity fosters understanding.</li>
+<li><strong>Manage Your Reactions:</strong> Do not let personal emotions compromise your judgment or conduct. A staff member who loses composure loses their authority.</li>
+</ul>
+<p>Maturity is your primary tool for managing difficult situations. Use it consistently.</p>
+<h3 id="the-principle-of-professionalism">The Principle of Professionalism</h3>
+<p>While Maturity governs your internal state, <strong>Professionalism</strong> governs your external conduct. When you are acting in an official capacity, you are no longer just a member of our community; you are a representative of Red Lotus. Every interaction you have in a public channel or a support ticket must be handled appropriately. This principle strictly prohibits:</p>
+<ul>
+<li><strong>Abuse of Role:</strong> Using pings, permissions, or authority for personal reasons, jokes, or intimidation will not be tolerated.</li>
+<li><strong>Engaging in “Flame Wars” or Trolling:</strong> Especially in official contexts like support tickets or public channels, your behavior must be professional. While informal staff channels may have a relaxed atmosphere, this does not extend to your official duties.</li>
+<li><strong>Acting with Bias:</strong> Your decisions must be based solely on facts and regulations, not on personal friendships or dislikes.</li>
+</ul>
+<p>Every action you take reflects on the entire Unity. Ensure that reflection is one you can stand by.</p>
+<h3 id="the-principle-of-security">The Principle of Security</h3>
+<p><strong>Security</strong> is an active duty with three dimensions: security for the user, security for the inspector, and security for the procedure itself. As outlined in the <em>Directive on Screenshare Security</em>, your role is crucial in ensuring the integrity of every ScreenShare you are involved in. This principle requires you to:</p>
+<ul>
+<li><strong>Protect the User:</strong> Ensure that only approved tools and non-invasive methods are used during a ScreenShare, safeguarding the user’s privacy and system integrity.</li>
+<li><strong>Protect the Inspector:</strong> Supervising a ScreenShare is not just about oversight; it’s also about protecting the operator from false accusations by providing an impartial witness and a recording of the event.</li>
+<li><strong>Protect the Procedure:</strong> Meticulous adherence to security protocols ensures that any evidence gathered is valid and defensible, legitimizing any subsequent decisions.</li>
+</ul>
+<p>Security is not an option; it is a procedural requirement.</p>
+<h3 id="the-principle-of-privacy">The Principle of Privacy</h3>
+<p>This is one of the most critical principles in Red Lotus. During your duties, you will gain access to confidential information: discussions in staff channels, the contents of support tickets, and data from ScreenShares. This information is considered a <em>procedural secret</em>. This principle is built on a pact of trust with both the Unity and its users. Violating it is the most serious breach possible.</p>
+<ul>
+<li><strong>Absolute Prohibition of Leaks:</strong> Any unauthorized sharing of information, screenshots, or internal discussions for any reason—be it to show off, help a friend, or act on a grudge—will result in immediate removal, a permanent ban, and a notification of the leak sent to all partner communities.</li>
+<li><strong>Zero Tolerance:</strong> There are no excuses. The intent behind a leak is irrelevant. A breach of this principle is final and without appeal.</li>
+</ul>
+<p>Your ability to maintain confidentiality is a direct measure of your trustworthiness.</p>
+<h3 id="the-principle-of-accuracy">The Principle of Accuracy</h3>
+<p>The legitimacy of Red Lotus as an institution rests on our ability to make fair judgments based on concrete facts. Every decision you make, especially one that results in a penalty, must be founded on evidence that is <strong>“beyond a reasonable doubt.”</strong> This principle obligates you to:</p>
+<ul>
+<li><strong>Rely on Incontrovertible Evidence:</strong> Your conclusions must stem from verifiable, relevant, and conclusive proof.</li>
+<li><strong>Reject Speculation:</strong> Feelings, hunches, or assumptions are not evidence. The burden of proof is on us, not the accused. Until proven otherwise, a user is considered innocent.</li>
+<li><strong>Strive for Certainty:</strong> The goal of any investigation is to reach a degree of certainty that leaves no room for reasonable doubt or plausible alternative explanations.</li>
+</ul>
+<p>Accuracy is not just a goal; it is the foundation of our credibility. Without it, we are just another group issuing arbitrary bans. That is not who we are.</p>
+<hr>
+<h2 id="operational-duties-and-responsibilities">Operational Duties and Responsibilities</h2>
+<p>Now that the core principles have been established, this section details their practical application. It outlines your day-to-day duties, organized into two distinct modules: the core operations that form the foundation of your activity, and the advanced functions that define your unique role within the Unity.</p>
+<h3 id="module-a-core-management-and-community-support">Module A: Core Management and Community Support</h3>
+<h4 id="ticket-management-the-front-line-of-red-lotus">Ticket Management: The Front Line of Red Lotus</h4>
+<p>The ticket system is the primary entry point for users seeking assistance from Red Lotus. Your efficiency here shapes the first impression users have of our organization. Managing tickets is not a secondary task; it is a critical function.</p>
+<ul>
+<li><strong>Claiming:</strong> Constantly monitor the ticket channels. Claim new requests promptly to demonstrate responsiveness.</li>
+<li><strong>Categorization and Renaming:</strong> Immediately rename every ticket according to the established standard (e.g., <code>Course-Request</code>, <code>Partnership-Query</code>, <code>General-Support</code>). This is essential for maintaining order and allowing Headquarters to quickly identify priorities.</li>
+<li><strong>Autonomous Resolution:</strong> Answer common questions and resolve basic issues independently. Familiarize yourself with our resources (guides, GitBook, announcements) to direct users efficiently. You are our first line of defense against disorganization.</li>
+</ul>
+<h4 id="protocol-for-escalation-to-headquarters">Protocol for Escalation to Headquarters</h4>
+<p>Not all requests will fall within your scope of expertise. Recognizing your limits is a sign of maturity. In such cases, you must escalate the issue to Headquarters. However, a simple ping is insufficient and demonstrates a lack of initiative. The correct protocol is a <strong>qualified escalation</strong>:</p>
+<ol>
+<li><strong>Analyze the Request:</strong> Fully understand the user’s problem.</li>
+<li><strong>Prepare a Summary:</strong> Before pinging, write a brief but comprehensive summary of the issue directly in the ticket. This allows an HQ member to grasp the context immediately without needing to read the entire conversation.
+<blockquote>
+<p><strong>Example:</strong> <code>@Headquarters, the user is requesting clarification on the partnership with Server XYZ. They claim one of their rules violates our Charter. I have provided the link to the relevant Charter, but the matter requires a higher-level assessment.</code></p>
+</blockquote>
+</li>
+<li><strong>Inform the User:</strong> Let the user know that their request has been forwarded to a superior and that they will receive a response as soon as possible.</li>
+</ol>
+<p>An efficient escalation reduces wait times and demonstrates professionalism.</p>
+<h4 id="public-moderation-and-support">Public Moderation and Support</h4>
+<p>Your role extends beyond private channels. You are also key figures in the server’s public spaces.</p>
+<ul>
+<li><strong>Act as Experts:</strong> Answer user questions in discussion channels, especially those of a technical nature. Your knowledge should be a resource for the entire community.</li>
+<li><strong>Act as Moderators:</strong> Intervene to de-escalate arguments, prevent spam, or address toxic behavior. Act firmly but impartially, applying server rules consistently. Remember: you are not part of the argument; you are its arbiter.</li>
+</ul>
+<h3 id="module-b-advanced-and-supervisory-functions">Module B: Advanced and Supervisory Functions</h3>
+<h4 id="the-supervisor-role-upholding-the-screenshare-security-directive">The Supervisor Role: Upholding the “Screenshare Security Directive”</h4>
+<p>This is one of your most sensitive and important responsibilities. As members of the Delegation, you are “Authorized Operatives” tasked with supervising ScreenShares to ensure they are conducted according to the strict standards of our <em>Security Directive</em>.</p>
+<ul>
+<li><strong>Supervision Procedures:</strong> Familiarize yourself with the different supervision methods described in Article 4 of the Directive. Understand when and how to monitor an inspector’s activity, whether through direct access or screen sharing.</li>
+<li><strong>Recording Obligation:</strong> During supervision, it is your duty, as well as the inspector’s, to record the entire session. This recording is a procedural document within our system and serves as evidence in the event of a dispute.</li>
+<li><strong>Handling Special Cases:</strong> Be prepared to manage non-standard scenarios, such as ScreenShares on non-Windows operating systems or, most importantly, applying the protection protocols for minor users as defined in the <em>Charter of Unity</em>.</li>
+</ul>
+<p>Your presence during a ScreenShare is not passive. You are a guarantor of its legitimacy.</p>
+<h4 id="partner-relations-management">Partner Relations Management</h4>
+<p>Red Lotus is at the center of a wide network of partner communities. Keeping these relationships healthy and functional is vital.</p>
+<ul>
+<li><strong>Point of Contact:</strong> You are often the first point of contact for support or ScreenShare requests from partner servers. Respond with promptness and courtesy.</li>
+<li><strong>Coordination:</strong> When a partner requests a ScreenShare, it is the Delegation’s collective responsibility to ensure the request is claimed and handled by coordinating available members.</li>
+<li><strong>Professionalism:</strong> Remember that when you interact with the staff of a partner server, you are representing Red Lotus. Every interaction must be diplomatic and professional.</li>
+</ul>
+<h4 id="intelligence-and-vetting-tasks">Intelligence and Vetting Tasks</h4>
+<p>Your in-depth knowledge of the community is a strategic asset for Headquarters.</p>
+<ul>
+<li><strong>Threat Monitoring:</strong> On a voluntary basis or upon request, monitor the activities of rival communities, bypass markets, and public discussions to identify new threats, cheating methods, or potential drama that could involve Red Lotus.</li>
+<li><strong>Analysis and Reporting:</strong> Information gathered should be summarized into clear, objective, and unemotional reports to be forwarded to Headquarters for strategic assessment.</li>
+<li><strong>Vetting and Background Checks:</strong> Use your network of contacts and experience to assist Headquarters in the vetting process for new staff candidates, potential partners, or problematic users by providing an honest and fact-based evaluation.</li>
+</ul>
+<p>You are the eyes and ears of Headquarters on the ground.</p>
+<h3 id="module-c-partner-operational-integrity-audits">Module C: Partner Operational Integrity Audits</h3>
+<p>A core component of the Red Lotus Unity is ensuring that our high standards of operation and ethics are consistently upheld across our entire network. A partnership with Red Lotus is not a passive affiliation; it is an active commitment to a shared set of principles. To this end, the Delegation is entrusted with the critical and highly sensitive task of conducting periodic, discreet audits of our partner servers' staff teams. This is not an act of distrust, but a vital quality assurance mechanism designed to protect the integrity of the Unity, support our partners in their continuous improvement, and guarantee a consistent, professional, and fair experience for all users within our ecosystem.</p>
+
+<h4 id="audits-purpose-and-mandate">Purpose and Mandate</h4>
+<p>The primary and sole objective of these audits is to verify that partner staff teams are actively and effectively adhering to the foundational principles of Maturity, Professionalism, and Procedural Fairness. <strong><em>These operations are conducted not for personal entertainment, to cause harm, or to "catch out" our partners, but as a collaborative and constructive effort. Our goal is to work with our partners to build a better and more aligned environment for everyone, one that upholds the shared principles and guidelines we all aim to maintain.</em></strong> These operations serve to:</p>
+<ul>
+    <li><strong>Ensure Compliance:</strong> Confirm that partner procedures for user support, public moderation, and especially ScreenShares are aligned with the rigorous standards set by Red Lotus Charters and Directives.</li>
+    <li><strong>Identify Training Gaps:</strong> Highlight, through practical application, specific areas where partner staff may benefit from additional guidance, resources, or training, which we can then offer as a supportive measure to foster mutual growth.</li>
+    <li><strong>Uphold Unity Reputation:</strong> Protect the reputation of both Red Lotus and our partners by ensuring that the "gold standard" associated with our name is a tangible, verifiable reality across all affiliated communities.</li>
+</ul>
+
+<h4 id="audits-authorization-protocol">The Authorization Protocol (The "Reconnaissance Mandate")</h4>
+<p>These operations are highly sensitive and carry significant weight. They must not be undertaken lightly, impulsively, or without explicit, documented approval. Any attempt to conduct an "audit" without meticulously following this protocol will be considered a serious breach of conduct and will result in disciplinary action.</p>
+<ol>
+    <li>
+        <strong>The Formal Request &amp; Operational Plan:</strong> Before any action is taken, a formal request must be submitted in the designated staff channel (e.g., <code>#recon-mandates</code>). This request must constitute a complete <strong>Operational Plan</strong>, detailing:
+        <ul>
+            <li>The target partner server and the specific department to be audited (e.g., "Minecraft Moderation Team," "Discord Support Staff").</li>
+            <li>The specific objectives of the audit. <strong>It is extremely important that you specify the exact type of scenario you intend to test and adhere strictly to testing only that scenario.</strong> (e.g., "Assess ticket response times and professionalism for a complex rules query," "Evaluate the ScreenShare capabilities and privacy-security adhering").</li>
+            <li>The Delegation members who will be involved in the operation.</li>
+            <li>The alternate, non-staff accounts that will be used.</li>
+            <li>A step-by-step description of the planned scenario, including key phrases or actions to be used.</li>
+            <li>The defined boundaries of the audit (i.e., at what point the test is considered complete or should be aborted).</li>
+        </ul>
+    </li>
+    <li>
+        <strong>The Mandate Approval:</strong> The Operational Plan must be reviewed and explicitly approved by a designated superior in a designed chat on our discord server. This approval constitutes the "Reconnaissance Mandate." <strong><span class="warning-text">No operation, under any circumstances, may begin without this formal, written mandate.</span></strong> If you wish to make changes or test new aspects during an operation, you must halt the current audit, withdraw, and submit a new, updated request for verification.
+    </li>
+</ol>
+
+<h4 id="audits-areas-of-evaluation">Areas of Evaluation</h4>
+<p>Audits will focus on assessing staff behavior and procedural adherence in the following key areas:</p>
+<ul>
+    <li><strong>A. Support and Problem-Solving Efficiency:</strong> Testing the speed, clarity, and professionalism of the support offered in tickets or public help channels and or game chat.</li>
+    <li><strong>B. Procedural Competence of ScreenSharers:</strong> Simulating scenarios to test the <strong>different stages</strong> of a ScreenShare protocol. <strong><span class="warning-text">Extreme caution must be exercised when attempting to initiate a ScreenShare scenario.</span></strong> These situations are the most volatile, difficult to control, review, and de-escalate. The goal is to test their adherence to the <em>Security Directive</em> by:
+        <ul>
+            <li>Evaluating their initial contact method and professionalism.</li>
+            <li>Confirming they correctly inform the user of their rights.</li>
+            <li>Assessing their procedural steps before and during a full inspection.</li>
+        </ul>
+    </li>
+    <li><strong>C. Stress Management and De-escalation Skills:</strong> Simulating a "difficult" but non-abusive user to test a staffer's patience and their ability to remain professional under pressure.</li>
+    <li><strong>D. In-Game Scenario Simulation:</strong> Creating controlled, difficult-to-manage situations on partner Minecraft or FiveM servers to evaluate in-game staff. Examples of controlled tests include:
+        <ul>
+            <li><strong>Controlled Dispute Simulation:</strong> Two auditors can stage a minor, contained argument over an in-game rule in a message or a secluded area, away from other players, to test a moderator's mediation skills.</li>
+            <li><strong>"Lost" Player Scenario:</strong> An auditor can feign being new to the server and ask for guidance on complex server features, testing the staff's helpfulness and knowledge.</li>
+            <li><strong>Ambiguous Event Rule Query:</strong> During a server event, an auditor can approach a staff member and ask for clarification on a rule that is intentionally vague, testing their decision-making and communication.</li>
+        </ul>
+    </li>
+</ul>
+
+<h4 id="audits-rules-of-engagement">Rules of Engagement and Ethical Conduct</h4>
+<ul>
+    <li><strong>Team Composition:</strong> Audits must be conducted by a team of <strong>at least two (2), preferably three (3), members.</strong> This ensures multiple perspectives, corroboration of events, and mutual accountability.</li>
+    <li><strong>Anonymity and Objectivity (The Alternate Account Mandate):</strong> The use of anonymous, non-staff alternate accounts is not just a suggestion; it is a mandatory requirement. This is critical for several reasons:
+        <ul>
+            <li><strong>It ensures an unbiased test:</strong> Partner staff will treat you as they would any normal user, providing a genuine sample of their standard operating procedure. If they knew you were Red Lotus staff, they would likely offer preferential treatment, rendering the audit useless.</li>
+            <li><strong>It maintains objectivity:</strong> It prevents any pre-existing personal relationships or biases (positive or negative) between the auditor and the staff member from influencing the interaction.</li>
+            <li><strong>It protects the integrity of the process:</strong> It allows the audit to be conducted discreetly, preventing unnecessary alarm or disruption to the partner community.</li>
+        </ul>
+    </li>
+    <li><strong>Do No Harm:</strong> The primary directive is to observe and test. You must not cause any disruption to regular players on Discord or in-game. Your job is to blend in, not stand out.</li>
+    <li><strong>No Real Violations:</strong> Auditors are strictly forbidden from actually cheating, using hate speech, harassing users, or breaking any of the partner server's major rules.</li>
+</ul>
+
+<h4 id="audits-reporting-and-evidence">Reporting and Mandatory Evidence Collection</h4>
+<p>An audit without meticulous documentation is a failure.</p>
+<ul>
+    <li><strong>Comprehensive Reporting:</strong> Regardless of the outcome, a highly detailed report is mandatory. It must explain the entire process, from planning to execution, detailing every significant interaction.</li>
+    <li><strong>Universal Evidence Collection:</strong> You must capture evidence of all important interactions. <strong>For Discord text chats, this means screenshots. For any in-game activity—such as simulating flame, testing movement-based cheat detection, or voice chat interactions—that cannot be easily recovered and reviewed via chat logs, it is imperative that you have a full, uninterrupted video recording of the entire event.</strong> This is critical so that superiors can fully review the context and execution of the audit.</li>
+    <li><strong>Special Requirement for ScreenShare Audits:</strong> For any test involving the ScreenShare process, a <strong>full, uninterrupted video recording of the entire interaction is obligatory.</strong></li>
+</ul>
+
+<h4 id="audits-escalation-protocol">Escalation and Disengagement Protocol</h4>
+<p>If an interaction escalates beyond the controlled scope of the test, you must follow this non-negotiable protocol.</p>
+<ol>
+    <li><strong>Immediate Reporting:</strong> In any instance of escalation, disengage from the interaction and <strong>report the incident immediately to your designated superior.</strong> Provide them with a clear, chronological summary of events.</li>
+    <li><strong>Cessation of the Mandate:</strong> The moment you report an escalation, <strong>your task is terminated.</strong> Your team's responsibility is over. Cease all interaction.</li>
+    <li><strong>Final Incident Report:</strong> Your only remaining duty is to write the final report detailing what happened and why the test was aborted.</li>
+    <li><strong>Superior's Authority:</strong> The designated superior will then assume full responsibility for resolving the situation diplomatically with the partner's leadership. They will manage the de-escalation and will be responsible for documenting the resolution. This protocol protects you, the partner, and the integrity of the Unity.</li>
+</ol>
+<hr>
+<h2 id="the-appeals-process---the-delegation-as-an-adjudicative-body">The Appeals Process - The Delegation as an Adjudicative Body</h2>
+<p>This section outlines one of the most advanced and sensitive functions of the Delegation Team: your role within the Red Lotus justice system. When a user appeals to us, they are not simply asking for a second opinion; they are initiating a formal process in which you act as officers of the court. Meticulously understanding and applying these procedures is essential to maintaining the legitimacy and impartiality of our institution.</p>
+<h3 id="the-codex-of-appeals-our-code-of-procedure">The “Codex of Appeals”: Our Code of Procedure</h3>
+<p>Every justice system relies on a code of procedure to ensure order and fairness. For us, that document is the <em>Codex of Appeals</em>. The Codex is not a collection of suggestions; it is a <strong>binding procedural guide</strong> that governs every single aspect of handling appeals. It defines the requirements for an appeal, the time limits, the procedures for evidence evaluation, the rights of the appellant, and the duties of the adjudicating bodies. Your adherence to this code is non-negotiable. Acting outside the procedures outlined in the Codex means invalidating the process itself and compromising the justice we are sworn to uphold. Study it, internalize it, and apply it with absolute rigor.</p>
+<h3 id="phase-1---ipsu-monitoring-the-initial-filter">Phase 1 - IPSU Monitoring: The Initial Filter</h3>
+<p>Before a case reaches the deliberative stages, it must pass an eligibility check. This function, defined by Article 78 of the Codex, is known as <strong>IPSU Monitoring</strong> and is one of your primary responsibilities. At this stage, your task is to analyze the appellant’s motion to determine if it meets the minimum criteria to be handled by Red Lotus. You will need to answer fundamental questions (as specified in Art. 79):</p>
+<ul>
+<li>Does the appeal originate from a partner server?</li>
+<li>Is the penalty related to a ScreenShare?</li>
+<li>Has the appellant exhausted all internal appeal avenues on the partner server?</li>
+<li>Have all necessary documents and transcripts been provided?</li>
+</ul>
+<p>At the conclusion of this analysis, you will draft a formal protocol of <strong>Acceptance, Declining, or Voiding</strong> the case, which determines its subsequent path. This phase acts as a filter to ensure that only legitimate and relevant cases engage the resources of our adjudicative bodies.</p>
+<h3 id="phase-2---co-assistance-to-the-ipsu-tribunal-the-investigative-role">Phase 2 - Co-Assistance to the IPSU Tribunal: The Investigative Role</h3>
+<p>When a case is accepted and forwarded to the IPSU (Inter-Platform ScreenSharer’s Unity) Tribunal, the Delegation may be called upon to perform a crucial investigative role, as outlined in Article 81 of the Codex. At this stage, you act as an independent investigative arm. Your task is to:</p>
+<ul>
+<li><strong>Gather Information:</strong> Contact the staff of the partner server to obtain additional details, clarifications on their internal rules, or information not available to the Monitoring team.</li>
+<li><strong>Analyze Context:</strong> Review the specific regulations and practices of the partner server to fully understand the context in which the penalty was issued.</li>
+<li><strong>Provide a Report:</strong> Present the findings of your investigation to the IPSU Tribunal objectively and impartially, without expressing a preliminary judgment on the case.</li>
+</ul>
+<p>In this capacity, your ability to clearly gather and present facts is fundamental to the proper conduct of the process.</p>
+<h3 id="phase-3---the-court-of-delegates-the-hearing-and-final-decision">Phase 3 - The Court of Delegates: The Hearing and Final Decision</h3>
+<p>In the event that a verdict issued by the IPSU Tribunal is formally challenged by the appellant, the Delegation assumes its highest function: it convenes as the <strong>Court of Delegates</strong> (Art. 84-87 of the Codex), the first instance of appeal internal to the Red Lotus Unity. This is a formal and structured process:</p>
+<ol>
+<li><strong>Commission Formation:</strong> An internal commission of Delegation members will be appointed to re-evaluate the evidence and re-examine the procedural definitions that were applied.</li>
+<li><strong>Report Drafting:</strong> The commission will produce a formal document, the “Delegated Re-Evaluation Report,” which summarizes its analysis.</li>
+<li><strong>Convening the Hearing (Delegation Hearing):</strong> Based on the report, a hearing will be convened. For the final decision to be valid, the participation of at least four Delegation members is required.</li>
+<li><strong>Deliberation and Vote:</strong> During the hearing, you will hear the opinions of the appellant, the original inspector, and the management of the partner server. Afterward, you will deliberate and vote to issue a <strong>Definitive Decision of the Delegation</strong>, which represents the official verdict of Red Lotus.</li>
+</ol>
+<p>This role requires the utmost impartiality, analytical skill, and a deep understanding of our procedural principles.</p>
+<h3 id="report-drafting-standards-and-formality">Report Drafting: Standards and Formality</h3>
+<p>Each phase of the appeals process produces official documents: protocols, reports, records, and final decisions. The quality and formality of these documents are a direct reflection of the professionalism of Red Lotus. It is your duty to ensure that every document you draft is:</p>
+<ul>
+<li><strong>Clear and Concise:</strong> Written in professional language, free of ambiguity, and easily understood.</li>
+<li><strong>Structured and Orderly:</strong> Follows a standardized format, with precise references to the articles of our codes and the evidence analyzed.</li>
+<li><strong>Objective and Impartial:</strong> Reports the facts without inserting personal opinions or emotional commentary.</li>
+</ul>
+<p>As with any court of justice, our written records are the historical testimony of our integrity. Treat them with the seriousness they deserve.</p>
+<hr>
+<div class="zero-tolerance-section">
+<h2 id="internal-regulations-and-code-of-conduct-zero-tolerance">Internal Regulations and Code of Conduct (Zero Tolerance)</h2>
+<p>The principles and duties described thus far are supported by a set of non-negotiable rules. This section constitutes your internal Code of Conduct. A violation of any of the following articles will not be subject to interpretation or negotiation but will result in immediate and progressive disciplinary action, which may culminate in permanent removal from the team and the Unity. The approach is <strong><span class="warning-text">zero tolerance</span></strong>. You are required to know, understand, and abide by these rules at all times.</p>
+<h3 id="article-1-absolute-professionalism">Article 1: Absolute Professionalism</h3>
+<p>While representing Red Lotus, your conduct must be irreproachable. This is not a suggestion; it is a <strong>mandate</strong>.</p>
+<ul>
+<li><strong>Language and Tone:</strong> The use of vulgar language, insults, derogatory sarcasm, or a passive-aggressive attitude is strictly forbidden in any official context (tickets, public channels, interactions with partners).</li>
+<li><strong>Abuse of Power:</strong> Misusing permissions (pinging superior roles without a valid reason, kicking, muting, or other moderation actions for personal reasons) is a direct violation of the trust placed in you and will result in an immediate review of your position.</li>
+<li><strong>Prohibition of Trolling:</strong> Trolling is permitted, in moderation, exclusively within informal staff chat channels. It is <strong><span class="warning-text">absolutely forbidden</span></strong> while performing any official duty, especially within a ticket or during a ScreenShare. The seriousness of your role allows for no exceptions.</li>
+</ul>
+<h3 id="article-2-confidentiality-and-the-pact-of-silence">Article 2: Confidentiality and the Pact of Silence</h3>
+<p>As specified in the Principle of Privacy, confidentiality is the bedrock of our integrity. A violation of this article is considered the <strong><span class="warning-text">most serious offense possible</span></strong>.</p>
+<ul>
+<li><strong>Procedural Secrecy:</strong> Any information, discussion, file, or screenshot originating from staff channels (<code>#delegation</code>, <code>#headquarters</code>, etc.), appeal processes, or supervision sessions is classified as a <strong>procedural secret</strong>.</li>
+<li><strong>Sanction for Leaks:</strong> <span class="warning-text">The sharing of such information with anyone not explicitly authorized, for any reason, will result in <strong>immediate removal from the team, a permanent ban from Red Lotus, and an official notification of the leak sent to all partner communities, including the name and ID of the responsible user.</strong></span></li>
+<li><strong>No Appeal:</strong> This sanction is final and is not subject to appeal.</li>
+</ul>
+<h3 id="article-3-the-duty-of-activity-and-presence">Article 3: The Duty of Activity and Presence</h3>
+<p>Your role is not an honorary title; it is an operational position that requires consistent commitment. Inactivity harms the efficiency of the entire team.</p>
+<ul>
+<li><strong>Minimum Activity Requirements:</strong> A minimum level of traceable weekly activity is required (handling tickets, participating in ScreenShares, etc.). Persistent lack of initiative will be considered a neglect of your duties.</li>
+<li><strong>Unjustified Absence:</strong> An absence exceeding seven (7) consecutive days without a formal and prior notification in the <code>#loa</code> (Leave of Absence) channel will be considered an abandonment of your post. This will result in <strong><span class="warning-text">immediate and unannounced removal</span></strong> to make way for more active and dedicated members.</li>
+</ul>
+<h3 id="article-4-respect-for-hierarchy-and-operational-limits">Article 4: Respect for Hierarchy and Operational Limits</h3>
+<p>Our structure is hierarchical to ensure order and consistency. Recognizing and respecting this structure is mandatory.</p>
+<ul>
+<li><strong>Chain of Command:</strong> The Delegation reports to Headquarters. Strategic decisions, policy changes, new partnerships, or high-profile sanctions are the exclusive domain of HQ. Never act outside your jurisdiction.</li>
+<li><strong>Public Initiatives:</strong> It is strictly forbidden to take public initiatives or speak on behalf of Red Lotus without the prior and explicit authorization of an HQ member. This includes making statements, announcements, or agreements with other communities.</li>
+<li><strong>Managing Disagreements:</strong> Any disagreements with leadership decisions must be discussed privately, professionally, and constructively. Undermining the authority of HQ publicly or through gossip is an act of insubordination and will be treated as such.</li>
+</ul>
+<h3 id="article-5-handling-of-sensitive-information-protection-of-minors">Article 5: Handling of Sensitive Information (Protection of Minors)</h3>
+<p>The <em>Charter of Unity</em> (Art. 33-35) establishes extremely strict protocols for handling ScreenShares involving minor users. Violating these rules is not just a regulatory breach but a serious ethical failure.</p>
+<ul>
+<li><strong>Obligation of Knowledge:</strong> You are required to know and apply, to the letter, every procedure described in Articles 33-35 of the Charter, including the need for adult supervision and the prohibition of invasive techniques.</li>
+<li><strong>Severity of Violation:</strong> Any deviation from these protocols, even if unintentional, will be considered a grave violation and will result in severe sanctions, including possible immediate removal from the team. The protection of the most vulnerable members of the community is our absolute priority.</li>
+</ul>
+<h3 id="article-6-ethics-during-screenshares">Article 6: Ethics During ScreenShares</h3>
+<p>During a ScreenShare or its supervision, your conduct must be guided by non-negotiable ethical principles.</p>
+<ul>
+<li><strong>Impartiality:</strong> Treat every user with the same standard of judgment, regardless of their reputation, role, or your personal relationship with them.</li>
+<li><strong>Presumption of Innocence:</strong> Until “incontrovertible” proof of a violation is discovered, the user must be treated with respect and considered innocent. Accusatory or intimidating behavior is not permitted.</li>
+<li><strong>Respect and De-escalation:</strong> Maintain a calm and professional demeanor for the entire duration of the ScreenShare. Avoid responding to provocations and focus exclusively on the technical and procedural aspects of your task.</li>
+</ul>
+<h3 id="article-7-use-of-tools">Article 7: Use of Tools</h3>
+<p>The effectiveness and legitimacy of your work depend on the tools you use.</p>
+<ul>
+<li><strong>Approved Tools:</strong> During ScreenShares, you are only permitted to use official partner scanners (e.g., Echo, Ocean, Storm) and the manual tools approved and listed in the official Red Lotus documentation.</li>
+<li><strong>Prohibition of Personal/Unverified Tools:</strong> The use of personal tools, unverified scripts, or any software not officially approved by Headquarters during a ScreenShare is <strong>strictly forbidden</strong>. This rule is in place to guarantee the user’s security and the integrity of the evidence gathered. Its violation can invalidate an entire ScreenShare and will result in disciplinary action.</li>
+</ul>
+</div>
+<hr>
+<h2 id="team-structure-and-growth-paths">Team Structure and Growth Paths</h2>
+<p>Understanding your place within the Red Lotus structure is key to operating effectively and collaboratively. This section outlines the internal hierarchy, the expectations for your journey within the team, and the essential administrative procedures for maintaining your role.</p>
+<h3 id="the-internal-hierarchy">The Internal Hierarchy</h3>
+<p>Red Lotus operates under a clear hierarchical structure designed to distribute responsibilities and ensure an efficient chain of command. The three primary staff bodies are:</p>
+<ul>
+<li><strong>Delegation:</strong> (Your Team)
+<ul>
+<li><strong>Responsibilities:</strong> You are the first operational level of the staff. Your duties include ticket management, moderation, partner support, supervision of ScreenShares, and the first instance of the appeals process, as detailed in this manual. You are the operational backbone of the Unity.</li>
+</ul>
+</li>
+<li><strong>Division:</strong>
+<ul>
+<li><strong>Responsibilities:</strong> The Division is a specialized body composed of members with elite technical expertise. It acts as a higher level of consultation and intervention. Their duties include handling complex technical cases, the final review of certain appeal decisions, and the development of new methodologies and tools. They report directly to HQ.</li>
+</ul>
+</li>
+<li><strong>Headquarters (HQ):</strong>
+<ul>
+<li><strong>Responsibilities:</strong> Headquarters is the highest governing body of Red Lotus. They are responsible for strategic direction, high-level external relations, drafting and amending codes and charters, and acting as the final authority on all procedural and disciplinary matters. Their authority is final.</li>
+</ul>
+</li>
+</ul>
+<p>Your direct reporting line is to Headquarters. Collaboration between the different levels is essential, but respect for this hierarchy is mandatory.</p>
+<h3 id="probationary-period-and-performance-evaluation">Probationary Period and Performance Evaluation</h3>
+<p>Entry into the Delegation Team is contingent upon successfully completing a mandatory thirty (30) day probationary period.</p>
+<ul>
+<li><strong>Purpose of the Probationary Period:</strong> During this month, your activity, professionalism, ability to learn procedures, and integration into the team will be closely monitored by Headquarters. This is not just a test of your technical skills, but of your overall suitability to hold this position of responsibility.</li>
+<li><strong>Evaluation Criteria:</strong> The following aspects will be assessed:
+<ul>
+<li><strong>Activity:</strong> Proactive claiming and handling of tasks.</li>
+<li><strong>Competence:</strong> Correct application of procedures.</li>
+<li><strong>Professionalism:</strong> Quality of interactions with users and staff.</li>
+<li><strong>Reliability:</strong> Adherence to deadlines and commitments.</li>
+</ul>
+</li>
+<li><strong>Continuous Evaluation:</strong> After passing probation, the evaluation does not stop. Your performance will continue to be monitored to ensure that the team’s standards remain consistently high. Unsatisfactory performance or prolonged inactivity can lead to a review of your position at any time.</li>
+</ul>
+<h3 id="continuous-training">Continuous Training</h3>
+<p>The world of digital security and online communities is constantly evolving. New threats, new bypasses, and new techniques emerge continuously. To stand still is to fall behind. For this reason, continuous training is an <strong>obligation, not an option.</strong></p>
+<ul>
+<li><strong>Participation in Webinars:</strong> You are required to actively participate in webinars and training sessions organized by Headquarters or other qualified members. These events are designed to keep you updated on the latest ScreenShare methodologies and new internal procedures.</li>
+<li><strong>Duty to Stay Updated:</strong> It is your personal responsibility to study and stay current with every new revision of the Charters, the Codex, and the Directives. Ignorance of a new regulation will not be accepted as an excuse for its non-application.</li>
+</ul>
+<p>Your expertise is the team’s most valuable asset. Investing in its maintenance is your duty.</p>
+<h3 id="absence-management-loa-protocol">Absence Management (LOA Protocol)</h2>
+<p>We understand that real-life commitments may sometimes require a period of absence. To manage these situations transparently and to avoid being removed for inactivity (as specified in Article 3 of this manual), the <strong>Leave of Absence (LOA) protocol</strong> has been established.</p>
+<ul>
+<li><strong>When to Use It:</strong> If you anticipate being absent or significantly inactive for a period exceeding three (3) consecutive days, you are required to provide notification.</li>
+<li><strong>How to Use It:</strong>
+<ol>
+<li>Write a formal message in the designated <code>#loa</code> channel.</li>
+<li>Specify the start date and, if possible, the expected end date of your absence.</li>
+<li>You do not need to provide personal details about the nature of your absence. A simple notification is sufficient.</li>
+</ol>
+</li>
+<li><strong>Importance of the Protocol:</strong> Following this procedure protects you from automatic removal for inactivity. Conversely, failure to communicate a prolonged absence will be interpreted as a disinterest in the role and will be handled accordingly, as per the regulations.</li>
+</ul>
+<hr>
+<h2 id="conclusion-and-final-commitment">Conclusion and Final Commitment</h2>
+<p>You have reached the end of this manual. The preceding sections have outlined the principles, duties, and regulations that define your new role. This final section serves to solidify your understanding and to formalize your commitment to the Red Lotus Unity.</p>
+<h3 id="a-summary-of-your-mission">A Summary of Your Mission</h3>
+<p>Being a member of the Delegation Team means being more than just staff. It means being a steward of justice, a guarantor of security, and a pillar of professionalism in an environment that greatly needs it. Your mission is to uphold and enforce the principles and procedures that set Red Lotus apart, always acting with maturity, integrity, and accuracy. Your work will have a direct impact not only on our community but also on those of our partners, helping to create a fairer and more secure digital space for everyone. It is a role of significant responsibility, but also one of great importance. Be the example you wish to see in others. Be a bulwark against disorder. Be worthy of the Red Lotus name.</p>
+<div class="formal-declaration">
+<h3 id="formal-declaration-of-acceptance">Formal Declaration of Acceptance</h3>
+<p>Reading this manual was not a simple informational exercise; it was the first step of your official onboarding. The rules and procedures contained herein are not suggestions but <strong>binding conditions</strong> for your tenure on the team. To complete your entry into the Delegation Team, you are now required to formalize your commitment.</p>
+<p>Please proceed as follows:</p>
+<p>Reply to this message, which has been sent in a private channel accessible only to you and Headquarters, with the following exact declaration:</p>
+<blockquote>
+<p>“I, [Your Discord Username], hereby declare that I have read, understood, and fully accept every section, article, and clause of the Delegation Team Operational Manual and Code of Conduct. I acknowledge that this document acts as a binding agreement, and I commit to adhering to all its parts. I am aware that a violation of any of the rules contained within will result in the application of the stipulated disciplinary sanctions, including potential permanent removal from the team and the Red Lotus Unity.”</p>
+</blockquote>
+<p>Once you have sent this declaration, your role will become fully operational. Your response will be recorded and archived as proof of your informed consent and your formal commitment to the duties and responsibilities that await you.</p>
+<p>Welcome, once again, to the Delegation Team.</p>
+<p><strong>Your work begins now.</strong></p>
+</div>
+<div style="text-align: right; margin-top: 60px;">
+  <p style="margin: 0; font-family: 'Dancing Script', cursive; font-size: 1.5em; font-style: italic; line-height: 1;">ItzIceHere</p>
+  <p style="margin: 0; font-family: 'Dancing Script', cursive; font-size: 1.5em; font-style: italic; line-height: 1;">Headquarters</p>
+</div>
+<script>
+    const themeSwitcher = document.getElementById('theme-switcher');
+    const themeIcon = themeSwitcher.querySelector('i');
+    const currentTheme = localStorage.getItem('theme');
+
+    function setTeam(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        if (theme === 'dark') {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        } else {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+    }
+
+    if (currentTheme) {
+        setTeam(currentTheme);
+    }
+
+    themeSwitcher.addEventListener('click', () => {
+        const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        setTeam(newTheme);
+    });
+</script>
+</body>
+
+</html>
